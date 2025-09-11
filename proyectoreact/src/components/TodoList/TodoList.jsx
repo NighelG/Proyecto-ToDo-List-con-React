@@ -11,6 +11,10 @@ function TodoList() {
   const [date,setDate]=useState("")
   const [espacio,setEspacio]=useState([])
   const [error, setError]=useState("")
+
+  /* Funcion de la searchbar */
+
+
   /* Funcion del get */
   useEffect(() =>{
     const fecthTareas = async () =>{
@@ -37,6 +41,7 @@ function TodoList() {
   /* Visual, Post + valor */
   const subirTarea = async () =>{
       if(!revisarInputs())return;
+      let postAudio = new Audio('/sounds/yes!.m4a')
       const nuevoTask = {tarea: task, date, completada: false};
       try{
         /* esto es para postearla y limpiar los inputs */
@@ -44,7 +49,8 @@ function TodoList() {
         setEspacio([...espacio,tareaGuardada]);
         setTask('');
         setDate('');
-      }catch (error) {
+        await postAudio.play()
+      }catch(error) {
         console.error('Error al subir la tarea / task',error);
       }
     };
@@ -52,12 +58,14 @@ function TodoList() {
     const handleKeyDown = async (e) => {
       if (e.key === 'Enter'){
         if(!revisarInputs())return;
+        let postAudio = new Audio('/sounds/yes!.m4a')
         const nuevoTask = {tarea: task, date, completada: false, pendiente: true};
       try{
         const tareaGuardada = await UserService.postTareas(nuevoTask);
         setEspacio([...espacio,tareaGuardada]);
         setTask('');
         setDate('');
+        await postAudio.play()
       }catch (error) {
         console.error('Error al subir la tarea / task',error);
       }
@@ -94,11 +102,11 @@ function TodoList() {
       {error && <h1 style={{color:"red"}}>{error}</h1>} 
         {/* Espacio de las tareas subidas */}
       <h2 className='tareaTitulo'>Tareas</h2>
-      <select className='select' name="selector" id="selectTareas">
-        <option value="all">Todas</option>
-        <option value="pending">Pendientes</option>
-        <option value="complete">Completas</option>
-      </select>
+      <img className='mediumicons' src="https://img.icons8.com/?size=60&id=vh31KMqhxPJn&format=png" alt="" />
+      <label className='label'>
+        <input className='input' type="search" />
+      </label>
+    
       <br /><br /><br />
         <div>
           {espacio.length === 0 ? (
