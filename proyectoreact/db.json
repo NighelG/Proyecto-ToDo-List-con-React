@@ -1,0 +1,28 @@
+{
+  "tareas": [
+    {
+      "id": "ad8d",
+      "tarea": "Cocinar",
+      "date": "2025-09-11",
+      "completada": false
+    },
+    {
+      "id": "57c4",
+      "tarea": "Limpiar",
+      "date": "2025-09-11",
+      "completada": false
+    },
+    {
+      "id": "0b16",
+      "tarea": "Barrer el patio",
+      "date": "2025-09-12",
+      "completada": false
+    },
+    {
+      "id": "0f02",
+      "tarea": "Ver el nuevo episodio de Dr. Stone",
+      "date": "2025-09-13",
+      "completada": false
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+.select {
+  width: 100%;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #ffffff5c;
+  background-image: linear-gradient(to top, #ffffff5c, #ffffff5c 33%);
+}
+
+.sinResultados{
+  color: #000000d7;
+  text-align: center;
+  border: 3px;
+  border-color: #56565600;
+  border-style: solid;
+  border-radius: 10px;
+  width: 200px;
+  background-color: #11142d61;
+}
+
