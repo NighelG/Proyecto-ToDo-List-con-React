@@ -1,15 +1,27 @@
 {
   "tareas": [
     {
-      "id": "984d",
+      "id": "e41d",
       "tarea": "Cocinar",
-      "date": "2025-09-11",
+      "date": "2025-09-12",
       "completada": true
     },
     {
-      "id": "af1c",
+      "id": "b46c",
       "tarea": "Limpiar",
-      "date": "2025-09-11",
+      "date": "2025-09-12",
+      "completada": false
+    },
+    {
+      "id": "851a",
+      "tarea": "Estudiar",
+      "date": "2025-09-12",
+      "completada": true
+    },
+    {
+      "id": "5b61",
+      "tarea": "Dormir",
+      "date": "2025-09-12",
       "completada": false
     }
   ]

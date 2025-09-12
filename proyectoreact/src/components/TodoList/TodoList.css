@@ -10,6 +10,7 @@
   line-height: 1.1;
   background-color: #ffffff5c;
   background-image: linear-gradient(to top, #ffffff5c, #ffffff5c 33%);
+  margin-bottom: 100px;
 }
 
 .sinResultados{
@@ -23,3 +24,62 @@
   background-color: #11142d61;
 }
 
+.btnSilencio {
+  --primary-color: #5a5858b7;
+  --secondary-color: #ffffffc7;
+  --hover-color: #f3e300a7;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 20px;
+  color: var(--secondary-color);
+  padding: 1em 1.8em;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+}
+
+.btnSilencio .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnSilencio .arrow {
+  margin-top: 1px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+.btnSilencio .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.btnSilencio:hover {
+  background-color: var(--hover-color);
+}
+
+.btnSilencio:hover .arrow {
+  background: var(--secondary-color);
+}
+
+.btnSilencio:hover .arrow:before {
+  right: 0;
+}

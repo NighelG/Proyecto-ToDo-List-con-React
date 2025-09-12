@@ -38,7 +38,7 @@ function TodoList() {
   /* Visual, Post + valor */
   const subirTarea = async () =>{
       if(!revisarInputs())return;
-      let postAudio = new Audio('/sounds/yes!.m4a')
+      let postAudio = new Audio('/sounds/30 - All Chaos Emeralds.mp3')
       const nuevoTask = {tarea: task, date, completada: false};
       try{
         /* esto es para postearla y limpiar los inputs */
@@ -68,6 +68,7 @@ function TodoList() {
         }
       }
     }
+    /* Esto es lo del select */
     const tareasFiltradas=espacio.filter(t =>{
       if (filtro === "all") return true;
       if (filtro === "complete") return t.completada === true;
@@ -88,8 +89,7 @@ function TodoList() {
             <input className='input' type="text" onKeyDown={handleKeyDown} id='inputTarea' value={task} onChange={(t) => setTask(t.target.value)} />
             <input className='input' type="date" onKeyDown={handleKeyDown}id='inputFecha' value={date} onChange={(f) => setDate(f.target.value)}/>
           </label>
-
-          <br /><br />
+        
           <button onClick={subirTarea}>Subir tarea<img className='tinyicons' src="https://img.icons8.com/?size=60&id=I9kh61ROMiFd&format=png" alt="->" /></button>
         </div>
 
@@ -103,14 +103,19 @@ function TodoList() {
       </div>
       <br />
       {error && <h1 style={{color:"red"}}>{error}</h1>} 
-        {/* Espacio de las tareas subidas */}
-      <h2 className='tareaTitulo'>Tareas</h2>
+      <h4>Sonido</h4>
+      <button className='btnSilencio'><img className='tinyicons' src="https://img.icons8.com/?size=60&id=bQa3nB3En2r3&format=png" alt="silenciar" />Activar</button>
+      <br />
+      <button className='btnSilencio'><img className='tinyicons' src="https://img.icons8.com/?size=60&id=Luw9exmEqxUH&format=png" alt="silenciar" />Desactivar</button>
+      <h4>Filtro</h4>
       <select className='select'value={filtro} onChange={(e) => setFiltro(e.target.value)}>
         <option value="all">Todas</option>
         <option value="pending">Pendientes</option>
         <option value="complete">Completas</option>
       </select>
       <br /><br /><br />
+      {/* Espacio de las tareas subidas */}
+      <h2 className='tareaTitulo'>Tareas</h2>
         <div>
           {tareasFiltradas.length === 0 ? (
             <p className='sinResultados'>Sin resultados</p>

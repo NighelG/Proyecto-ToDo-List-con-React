@@ -5,9 +5,9 @@ import '../PatchDelete/PatchDelete.css'
 
 function PatchDelete({ tarea, onDelete, onToggle }) {
 
-    /* Lo del delte */
+    /* Lo del delete */
     const eliminarTarea = async () => {
-      let deleteAudio = new Audio('/sounds/Sonic Item box Hit Sound Effect.m4a')
+      let deleteAudio = new Audio('/sounds/Sonic Item box Hit Sound Effect.mp3')
       try {
         const eliminado = await UserService.deleteTarea(tarea.id);
         if (eliminado) {
@@ -18,23 +18,29 @@ function PatchDelete({ tarea, onDelete, onToggle }) {
         console.error("Error al eliminar la tarea", error);
       }
     };
-    /* Para completaralas */
+    /* Para completarlas */
     const tareaCompletada = async () => {
-      let completeAudio = new Audio('/sounds/1-Up.m4a');
+      let completeAudio = new Audio('/sounds/_Alright!_ - Sonic CD.opus');
+      let deleteAudio = new Audio('/sounds/_I_m Outta Here!_ - Sonic CD.opus')
+      /*  */
       try{
         const actu = await UserService.patchTareas(tarea.id,{
           completada: !tarea.completada,
         });
         onToggle(actu)
-        await completeAudio.play()
+        if(!tarea.completada){
+          await completeAudio.play()
+        }else{
+          await deleteAudio.play()
+        }
       } catch (error){
         console.error("Error al actualizar");
-        
       }
+
     }
   return (
     /* Me estrese mucho modificando y moviendo esto del otro jsx */
-    <div style={{ display: 'flex', alignItems: 'left', justifyContent:'space-between', marginBottom:'10px'  }}>
+    <div style={{ display: 'flex', alignItems: 'left', justifyContent:'space-between', marginBottom:'50px'  }}>
       <label className='container'>
         <input type="checkbox"checked={tarea.completada}onChange={tareaCompletada}/>
         <div className='checkmark'></div>
