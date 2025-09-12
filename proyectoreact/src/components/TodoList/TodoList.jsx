@@ -11,10 +11,7 @@ function TodoList() {
   const [date,setDate]=useState("")
   const [espacio,setEspacio]=useState([])
   const [error, setError]=useState("")
-
-  /* Funcion de la searchbar */
-
-
+  const [filtro,setFiltro]=useState("all")
   /* Funcion del get */
   useEffect(() =>{
     const fecthTareas = async () =>{
@@ -68,9 +65,15 @@ function TodoList() {
         await postAudio.play()
       }catch (error) {
         console.error('Error al subir la tarea / task',error);
-      }
+        }
       }
     }
+    const tareasFiltradas=espacio.filter(t =>{
+      if (filtro === "all") return true;
+      if (filtro === "complete") return t.completada === true;
+      if (filtro === "pending") return t.completada === false;
+      return true;
+    });
   return (
     <div>
       <h1><img className='mediumicons' src="https://img.icons8.com/?size=60&id=8X4nr61RTGOd&format=png" alt="" />To-Do list</h1>
@@ -102,17 +105,17 @@ function TodoList() {
       {error && <h1 style={{color:"red"}}>{error}</h1>} 
         {/* Espacio de las tareas subidas */}
       <h2 className='tareaTitulo'>Tareas</h2>
-      <img className='mediumicons' src="https://img.icons8.com/?size=60&id=vh31KMqhxPJn&format=png" alt="" />
-      <label className='label'>
-        <input className='input' type="search" />
-      </label>
-    
+      <select className='select'value={filtro} onChange={(e) => setFiltro(e.target.value)}>
+        <option value="all">Todas</option>
+        <option value="pending">Pendientes</option>
+        <option value="complete">Completas</option>
+      </select>
       <br /><br /><br />
         <div>
-          {espacio.length === 0 ? (
+          {tareasFiltradas.length === 0 ? (
             <p className='sinResultados'>Sin resultados</p>
           ) : (
-            espacio.map((t, index) => (
+            tareasFiltradas.map((t, index) => (
               <PatchDelete
                 key={index}
                 tarea={t}

@@ -4,7 +4,7 @@ body{
   margin-bottom: 2%;
   margin-left: 5%;
   margin-right: 5%;
-  background-image: url(https://cdn.prod.website-files.com/6009ec8cda7f305645c9d91b/64daa97e949f9b40709b27b1_64da709470d2e21aeabe5cc4_website-security-checklist-what-actually-matters-in-2020-b.jpeg);
+  background-image: url(https://i.imgur.com/mobS3Vq.jpg);
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
@@ -125,7 +125,7 @@ button:hover .arrow:before {
 
 .input:hover, .input:focus, .input-group:hover .input {
   outline: none;
-  border-color: #fa0079;
+  border-color: #002461;
 }
 
 .input-group:hover .label, .input:focus {
