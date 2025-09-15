@@ -12,7 +12,9 @@ function PatchDelete({ tarea, onDelete, onToggle }) {
         const eliminado = await UserService.deleteTarea(tarea.id);
         if (eliminado) {
           onDelete(tarea.id);
-          await deleteAudio.play()
+          if (!window.mutear) {
+            await deleteAudio.play();
+          }
         }
       }catch (error){
         console.error("Error al eliminar la tarea", error);
@@ -27,11 +29,13 @@ function PatchDelete({ tarea, onDelete, onToggle }) {
         const actu = await UserService.patchTareas(tarea.id,{
           completada: !tarea.completada,
         });
-        onToggle(actu)
-        if(!tarea.completada){
-          await completeAudio.play()
-        }else{
-          await deleteAudio.play()
+          onToggle(actu);
+          if (!window.mutear) {
+            if (!tarea.completada) {
+              await completeAudio.play();
+            } else {
+              await deleteAudio.play();
+            }
         }
       } catch (error){
         console.error("Error al actualizar");

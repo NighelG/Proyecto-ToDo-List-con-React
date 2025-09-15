@@ -4,7 +4,7 @@
       "id": "e41d",
       "tarea": "Cocinar",
       "date": "2025-09-12",
-      "completada": true
+      "completada": false
     },
     {
       "id": "b46c",
@@ -22,6 +22,12 @@
       "id": "5b61",
       "tarea": "Dormir",
       "date": "2025-09-12",
+      "completada": false
+    },
+    {
+      "id": "f365",
+      "tarea": "Terminar la funcion del boton de silencio",
+      "date": "2025-09-14",
       "completada": false
     }
   ]

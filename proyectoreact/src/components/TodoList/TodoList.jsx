@@ -5,13 +5,25 @@ import PatchDelete from '../../pages/PatchDelete/PatchDelete'
 import '../TodoList/TodoList.css'
 
 function TodoList() {
+  /* Esto es para los sonidos de los botnes */
+if (typeof window !== "undefined" && window.mutear === undefined) {
+  window.mutear = false;
+}
   /* Const principales */
+
+    /* Sepa judas para que era el navegar y el mutear que estan apagados pero mejor no los toco */
   const navegar = useNavigate();
   const [task,setTask]=useState("")
   const [date,setDate]=useState("")
   const [espacio,setEspacio]=useState([])
   const [error, setError]=useState("")
   const [filtro,setFiltro]=useState("all")
+  const [mutear, setMutear] = useState(window.mutear)
+  /* Esto es para dadd la redundacia, el muteo de la pagina */
+  const toggleMute = () => {
+    window.mutear = !window.mutear;
+    setMutear(window.mutear);
+  }
   /* Funcion del get */
   useEffect(() =>{
     const fecthTareas = async () =>{
@@ -46,7 +58,11 @@ function TodoList() {
         setEspacio([...espacio,tareaGuardada]);
         setTask('');
         setDate('');
+        /* A todos los sonidos le tuve que cambiar esto */
+        /* No fue dificil pero si tedioso acomadar de nuevi los corchetes y parentesis */
+      if (!window.mutear) {
         await postAudio.play()
+      }
       }catch(error) {
         console.error('Error al subir la tarea / task',error);
       }
@@ -62,7 +78,9 @@ function TodoList() {
         setEspacio([...espacio,tareaGuardada]);
         setTask('');
         setDate('');
+      if (!window.mutear) {
         await postAudio.play()
+      }
       }catch (error) {
         console.error('Error al subir la tarea / task',error);
         }
@@ -81,7 +99,6 @@ function TodoList() {
       <br />
       <div className='contenedorPrincipal'>
         {/* Subir Tareas */}
-
         <div className='contenedorTareas'>
           <h2>Sube una tarea</h2>
 
@@ -103,19 +120,27 @@ function TodoList() {
       </div>
       <br />
       {error && <h1 style={{color:"red"}}>{error}</h1>} 
+
       <h4>Sonido</h4>
-      <button className='btnSilencio'><img className='tinyicons' src="https://img.icons8.com/?size=60&id=bQa3nB3En2r3&format=png" alt="silenciar" />Activar</button>
-      <br />
-      <button className='btnSilencio'><img className='tinyicons' src="https://img.icons8.com/?size=60&id=Luw9exmEqxUH&format=png" alt="silenciar" />Desactivar</button>
+      {/* Hize lo mejor que pude para que se vea "ordenado" */}
+      <button className="btnSilencio" onClick={toggleMute}>
+        <img className="tinyicons" src={window.mutear? "https://img.icons8.com/?size=60&id=Luw9exmEqxUH&format=png" : "https://img.icons8.com/?size=60&id=bQa3nB3En2r3&format=png"
+        }alt="silenciar"/>{window.mutear ? "Desactivado" : "Activado"}
+      </button>
+
       <h4>Filtro</h4>
       <select className='select'value={filtro} onChange={(e) => setFiltro(e.target.value)}>
         <option value="all">Todas</option>
         <option value="pending">Pendientes</option>
         <option value="complete">Completas</option>
       </select>
+
+      
+
       <br /><br /><br />
       {/* Espacio de las tareas subidas */}
       <h2 className='tareaTitulo'>Tareas</h2>
+
         <div>
           {tareasFiltradas.length === 0 ? (
             <p className='sinResultados'>Sin resultados</p>
